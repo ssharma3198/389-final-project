@@ -1,0 +1,18 @@
+<table>
+	<tr>
+		<th> Poster </th>
+		<th> Rating </th>			
+		<th> Book </th>
+		<th> Author </th>
+		<th> Date </th>
+	</tr>
+	{{#each reviews}}
+	<tr>
+		<td> <a href="user/{{this.poster}}">{{this.poster}}</a></td>
+		<td> {{this.rating}} / 5 </td>
+		<td> <a href="book/{{this.book}}">{{this.book}}</a></td>
+		<td> <a href="author/{{this.author}}">{{this.author}}</a></td>
+		<td> {{this.date}} </td>
+	</tr>
+	{{/each}}
+</table>

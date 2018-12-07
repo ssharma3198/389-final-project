@@ -1,0 +1,7 @@
+<h3> {{review.book }} </h3>
+<i> By {{review.author}} <br> {{this.date}}</i>
+<br><i> {{review.rating}} / 5 <br> </i>
+{{#each review.genre}}
+{{this}}
+{{/each}}
+<p> {{this.comment}} </p>

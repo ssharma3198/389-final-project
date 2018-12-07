@@ -1,0 +1,68 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<script src="/JS/data-util.js" type="text/javascript" ></script>
+
+<h1> Reviews </h1>
+<input id="book_name" type="text" placeholder="Search Book">
+<table id="filter">
+	<tr>
+		<th> Poster </th>
+		<th> Rating </th>			
+		<th> Book </th>
+		<th> Author </th>
+		<th> Date </th>
+	</tr>
+	{{#each review}}
+	<tr>
+		<td> <a href="user/{{this.poster}}">{{this.poster}}</a></td>
+		<td> {{this.rating}} / 5 </td>
+		<td> <a href="book/{{this.book}}">{{this.book}}</a></td>
+		<td> <a href="author/{{this.author}}">{{this.author}}</a></td>
+		<td> {{this.date}} </td>
+	</tr>
+	{{/each}}
+</table>	
+
+<script type="text/javascript">
+	$("#book_name").on('keyup', function(p){
+		var input = $("#book_name").val();
+		if (input != "") {
+			var count = 0;
+			var inner_html = "<tr><th> Poster </th> \
+			<th> Rating </th>			\
+			<th> Book </th>\
+			<th> Author </th>\
+			<th> Date </th></tr>";
+			{{#each review}}			
+				if ("{{this.book}}".includes(input)) {
+					inner_html += "<tr><td> <a href=\"user/{{this.poster}}\">{{this.poster}}</a></td> \
+									<td> {{this.rating}} / 5 </td>\
+									<td> <a href=\"book/{{this.book}}\">{{this.book}}</a></td>\
+									<td> <a href=\"author/{{this.author}}\">{{this.author}}</a></td>\
+									<td> {{this.date}} </td></tr>";
+					count += 1				
+
+				}
+			{{/each}}
+			document.getElementById('filter').innerHTML = inner_html;
+			console.log(inner_html);
+			if (count == 0) {
+				alert("No book found");
+			}
+		} else {
+			var inner_html = "<tr><th> Poster </th> \
+			<th> Rating </th>			\
+			<th> Book </th>\
+			<th> Author </th>\
+			<th> Date </th></tr>";
+			{{#each review}}							
+				inner_html += "<tr><td> <a href=\"user/{{this.poster}}\">{{this.poster}}</a></td> \
+								<td> {{this.rating}} / 5 </td>\
+								<td> <a href=\"book/{{this.book}}\">{{this.book}}</a></td>\
+								<td> <a href=\"author/{{this.author}}\">{{this.author}}</a></td>\
+								<td> {{this.date}} </td></tr>"				
+			{{/each}}
+			document.getElementById('filter').innerHTML = inner_html;
+			console.log(inner_html);
+		}
+	});
+</script>
